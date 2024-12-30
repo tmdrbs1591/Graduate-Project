@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  curveStrength: 12
+  curveStrength: 6
   minStartDelay: 0
   maxStartDelay: 0.1
   goodsEffect: {fileID: 2830776939019850870, guid: d25c98b92c883b144b52bab7c3736386,

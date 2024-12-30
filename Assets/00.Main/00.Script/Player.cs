@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     [Header("스텟")]
     public float speed = 5f; // 플레이어 이동 속도
+    public float attackPower = 5f; //공격력
     [SerializeField] Vector3 attackBoxSize; //공격 범위
     [SerializeField] Transform attackBoxPos; // 공격 위치
 
@@ -22,6 +24,7 @@ public class Player : MonoBehaviour
     private bool facingRight = true; // 현재 바라보는 방향 (오른쪽이 기본)
 
     [SerializeField] GameObject[] slashs; // 슬래시 공격 배열
+    [SerializeField] GameObject damageText; // 슬래시 공격 배열
     public Ghost ghost;
 
     public bool isAttacking = false; // 공격 중인지 여부를 나타내는 변수
@@ -80,7 +83,7 @@ public class Player : MonoBehaviour
         {
             comboStep = 0; // 타이머가 초기화된 경우 콤보 시작
         }
-        Damage(1);
+        Damage(attackPower);
         // 콤보 단계별로 쿨타임 설정 (딴 딴 딴딴 딴 패턴)
         switch (comboStep)
         {
@@ -212,6 +215,16 @@ public class Player : MonoBehaviour
                     // 적에게 피해 주기
                     enemyScript.TakeDamage(damage);
 
+                    float randomX = Random.Range(-2f, 2f);  // X 값 범위 (예: -2f에서 2f 사이)
+                    float randomY = Random.Range(0.5f, 1.5f); // Y 값 범위 (예: 0.5f에서 1.5f 사이)
+
+                    Vector3 randomPosition = new Vector3(enemyScript.transform.position.x + randomX, enemyScript.transform.position.y + randomY, enemyScript.transform.position.z);
+                    var damageTextScript = Instantiate(damageText, randomPosition, Quaternion.identity).GetComponent<TMP_Text>();
+
+
+                    damageTextScript.text = attackPower.ToString();
+
+                    Destroy(damageTextScript.gameObject,3f);
                     // 리지드바디를 찾아 넉백시키기
                     Rigidbody rb = collider.GetComponent<Rigidbody>();
                     if (rb != null)
