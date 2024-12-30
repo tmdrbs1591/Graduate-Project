@@ -207,11 +207,23 @@ public class Player : MonoBehaviour
 
                 if (enemyScript != null)
                 {
+                    // 적에게 피해 주기
                     enemyScript.TakeDamage(damage);
+
+                    // 리지드바디를 찾아 넉백시키기
+                    Rigidbody rb = collider.GetComponent<Rigidbody>();
+                    if (rb != null)
+                    {
+                        // 넉백 방향과 강도
+                        Vector2 knockbackDirection = collider.transform.position - transform.position; // 공격자의 위치에서 적의 위치를 빼서 방향 계산
+                        rb.velocity = Vector2.zero; // 기존 속도 초기화 (넉백 전에 이동을 멈추기 위해)
+                        rb.AddForce(knockbackDirection.normalized * enemyScript.knockbackPower, ForceMode.Impulse); // 넉백
+                    }
                 }
             }
         }
     }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;

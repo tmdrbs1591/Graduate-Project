@@ -2,17 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class Enemy : MonoBehaviour
 {
     [Header("½ºÅÝ")]
     [SerializeField] float currentHP;
     [SerializeField] float maxHP;
+   public float knockbackPower;
+
+    [SerializeField] Material dieMatetrial;
+    [SerializeField] Material hitMaterial;
+    [SerializeField] Material originalMaterial;
 
     [SerializeField] GameObject dieEffect;
+
+    
     bool isDie;
 
-    // Start is called before the first frame update
+    Animator anim;
+    SpriteRenderer sprite;
+
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
+    }
     void Start()
     {
         currentHP = maxHP;
@@ -27,13 +42,15 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHP -= damage;
+        anim.SetTrigger("isHit");
+        StartCoroutine(HitMaterial());
     }
 
     void Die()
     {
         if(currentHP <= 0 && !isDie)
         {
-            Destroy(Instantiate(dieEffect,transform.position, Quaternion.identity),3f);
+            sprite.material = dieMatetrial;
             isDie = true;
             StartCoroutine(TimeSlow());
 
@@ -45,7 +62,15 @@ public class Enemy : MonoBehaviour
         Time.timeScale = 0.2f;
         yield return new WaitForSecondsRealtime(0.3f);
         Time.timeScale = 1;
+        Destroy(Instantiate(dieEffect, transform.position, Quaternion.identity), 3f);
         Destroy(gameObject);
 
+    }
+
+    IEnumerator HitMaterial()
+    {
+        sprite.material = hitMaterial;
+        yield return new WaitForSeconds(0.2f);
+        sprite.material = originalMaterial;
     }
 }
