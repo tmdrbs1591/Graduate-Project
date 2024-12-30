@@ -7,21 +7,144 @@ public class Player : MonoBehaviour
     [Header("스텟")]
     public float speed = 5f; // 플레이어 이동 속도
 
+    [Header("쿨타임")]
+    public int comboStep = 0; // 현재 콤보 단계
+    private float comboTimer = 0f; // 콤보 타이머
+    public float comboDelay = 1f; // 콤보 입력 가능 시간 (초)
+    public float slashActiveTime = 0.5f; // 슬래시 활성화 시간
+    public float cooldownTime = 0.2f; // 쿨타임 (초)
+    private float nextAttackTime = 0f; // 공격 사용 가능 시점
 
     private Rigidbody rb;    // Rigidbody 컴포넌트 참조
     private Animator animator; // Animator 컴포넌트 참조
     private bool facingRight = true; // 현재 바라보는 방향 (오른쪽이 기본)
+
+    [SerializeField] GameObject[] slashs; // 슬래시 공격 배열
+
+    public bool isAttacking = false; // 공격 중인지 여부를 나타내는 변수
 
     void Start()
     {
         // Rigidbody 및 Animator 컴포넌트 가져오기
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+
+        // 모든 슬래시 비활성화
+        foreach (GameObject slash in slashs)
+        {
+            slash.SetActive(false);
+        }
     }
 
     void FixedUpdate()
     {
         Move();
+    }
+
+    void Update()
+    {
+        HandleCombo();
+    }
+
+    void HandleCombo()
+    {
+        // 콤보 타이머 감소
+        if (comboTimer > 0)
+        {
+            comboTimer -= Time.deltaTime;
+        }
+        else
+        {
+            ResetCombo(); // 콤보 초기화
+        }
+
+        // 공격 입력 처리
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            if (Time.time >= nextAttackTime)
+            {
+                Attack();
+                nextAttackTime = Time.time + cooldownTime;
+            }
+        }
+    }
+
+    void Attack()
+    {
+        if (comboTimer <= 0)
+        {
+            comboStep = 0; // 타이머가 초기화된 경우 콤보 시작
+        }
+
+        // 콤보 단계별로 쿨타임 설정 (딴 딴 딴딴 딴 패턴)
+        switch (comboStep)
+        {
+            case 0:
+                cooldownTime = 0.2f; // 0단계: 초기 딴
+                animator.SetTrigger("Attack1");
+                break;
+            case 1:
+                cooldownTime = 0.2f; // 1단계: 짧은 딴
+                animator.SetTrigger("Attack2");
+                break;
+            case 2:
+                cooldownTime = 0.1f; // 2단계: 짧은 딴
+                animator.SetTrigger("Attack1");
+                break;
+            case 3:
+                cooldownTime = 0.2f; // 3단계: 긴 딴딴
+                animator.SetTrigger("Attack2");
+                break;
+            case 4:
+                cooldownTime = 0.5f; // 4단계: 기본값
+                animator.SetTrigger("Attack1");
+                break;
+            default:
+                cooldownTime = 0.5f; // 기본값
+                break;
+        }
+
+        // 공격 중 상태로 설정
+        isAttacking = true;
+
+        // 현재 콤보 단계의 슬래시 활성화
+        Debug.Log($"{comboStep + 1}번 슬래쉬 활성화");
+        StartCoroutine(ActivateSlash(slashs[comboStep]));
+
+        // Rigidbody에 AddForce로 앞으로 이동
+        Vector3 forceDirection = facingRight ? Vector3.right : Vector3.left; // 바라보는 방향
+        rb.AddForce(forceDirection * 3f, ForceMode.Impulse); // 힘 크기와 모드 설정
+
+        // 공격 중 이동을 멈추기 위해 속도 0으로 설정
+        rb.velocity = Vector3.zero;
+
+        // 콤보 단계 증가
+        comboStep++;
+        if (comboStep >= slashs.Length)
+        {
+            ResetCombo(); // 콤보 단계가 최대치를 넘으면 초기화
+        }
+        else
+        {
+            comboTimer = comboDelay; // 콤보 타이머 초기화
+        }
+    }
+
+    IEnumerator ActivateSlash(GameObject slash)
+    {
+        slash.SetActive(true);
+        yield return new WaitForSeconds(slashActiveTime); // 활성화 시간만큼 대기
+        slash.SetActive(false);
+
+        // 공격이 끝난 후 이동 가능하게 설정
+        isAttacking = false;
+    }
+
+    void ResetCombo()
+    {
+        comboStep = 0;
+        comboTimer = 0f;
+        Debug.Log("콤보 초기화");
     }
 
     // 캐릭터 방향 전환 함수
@@ -35,6 +158,9 @@ public class Player : MonoBehaviour
 
     void Move()
     {
+        if (isAttacking) // 공격 중에는 이동을 막음
+            return;
+
         // 수평 입력값 가져오기
         float horizontalInput = Input.GetAxis("Horizontal");
 
