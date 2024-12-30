@@ -161,7 +161,6 @@ public class Player : MonoBehaviour
     {
         comboStep = 0;
         comboTimer = 0f;
-        Debug.Log("콤보 초기화");
     }
 
     // 캐릭터 방향 전환 함수
