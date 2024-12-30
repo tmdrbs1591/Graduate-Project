@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     private bool facingRight = true; // 현재 바라보는 방향 (오른쪽이 기본)
 
     [SerializeField] GameObject[] slashs; // 슬래시 공격 배열
+    public Ghost ghost;
 
     public bool isAttacking = false; // 공격 중인지 여부를 나타내는 변수
 
@@ -86,6 +87,7 @@ public class Player : MonoBehaviour
             case 1:
                 cooldownTime = 0.2f; // 1단계: 짧은 딴
                 animator.SetTrigger("Attack2");
+                StartCoroutine(GhostActive());
                 break;
             case 2:
                 cooldownTime = 0.1f; // 2단계: 짧은 딴
@@ -113,7 +115,7 @@ public class Player : MonoBehaviour
 
         // Rigidbody에 AddForce로 앞으로 이동
         Vector3 forceDirection = facingRight ? Vector3.right : Vector3.left; // 바라보는 방향
-        rb.AddForce(forceDirection * 3f, ForceMode.Impulse); // 힘 크기와 모드 설정
+        rb.AddForce(forceDirection * 2f, ForceMode.Impulse); // 힘 크기와 모드 설정
 
         // 공격 중 이동을 멈추기 위해 속도 0으로 설정
         rb.velocity = Vector3.zero;
@@ -128,6 +130,14 @@ public class Player : MonoBehaviour
         {
             comboTimer = comboDelay; // 콤보 타이머 초기화
         }
+    }
+
+    IEnumerator GhostActive()
+    {
+        ghost.makeGhost = true;
+        yield return new WaitForSeconds(1f);
+        ghost.makeGhost = false;
+
     }
 
     IEnumerator ActivateSlash(GameObject slash)
@@ -167,6 +177,7 @@ public class Player : MonoBehaviour
         // Rigidbody에 힘을 적용해 움직이기
         Vector3 movement = new Vector3(horizontalInput * speed, rb.velocity.y, 0);
         rb.velocity = movement;
+
 
         // 애니메이션 상태 업데이트
         if (horizontalInput != 0)
