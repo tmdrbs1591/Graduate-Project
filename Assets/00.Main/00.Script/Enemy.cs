@@ -41,6 +41,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        CameraShake.instance.ShakeCamera(5f,0.1f);
         currentHP -= damage;
         anim.SetTrigger("isHit");
         StartCoroutine(HitMaterial());
@@ -50,6 +51,7 @@ public class Enemy : MonoBehaviour
     {
         if(currentHP <= 0 && !isDie)
         {
+            CameraShake.instance.ShakeCamera(6f, 0.2f);
             sprite.material = dieMatetrial;
             isDie = true;
             StartCoroutine(TimeSlow());
