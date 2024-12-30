@@ -11,11 +11,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] float maxHP;
    public float knockbackPower;
 
+    [Header("메테리얼")]
     [SerializeField] Material dieMatetrial;
     [SerializeField] Material hitMaterial;
     [SerializeField] Material originalMaterial;
 
+    [Header("이펙트")]
     [SerializeField] GameObject dieEffect;
+    [SerializeField] GameObject hitEffect;
 
     
     bool isDie;
@@ -41,6 +44,10 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+
+        Destroy(Instantiate(hitEffect,transform.position,Quaternion.identity),2f);
+        AudioManager.instance.PlaySound(transform.position, 1, Random.Range(1f, 1.1f), 0.5f);
+
         CameraShake.instance.ShakeCamera(5f,0.1f);
         currentHP -= damage;
         anim.SetTrigger("isHit");

@@ -67,6 +67,8 @@ public class Player : MonoBehaviour
             if (Time.time >= nextAttackTime)
             {
                 Attack();
+                AudioManager.instance.PlaySound(transform.position, 0, Random.Range(1.2f, 1.3f), 1f);
+
                 nextAttackTime = Time.time + cooldownTime;
             }
         }
