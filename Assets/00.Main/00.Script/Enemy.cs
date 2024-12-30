@@ -20,7 +20,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject dieEffect;
     [SerializeField] GameObject hitEffect;
 
-    
+    [SerializeField] GameObject goodsPrefab;
+    [SerializeField] int goodsCount;
+
     bool isDie;
 
     Animator anim;
@@ -62,6 +64,10 @@ public class Enemy : MonoBehaviour
             sprite.material = dieMatetrial;
             isDie = true;
             StartCoroutine(TimeSlow());
+
+            for (int i = 0; i < goodsCount; i++) { 
+            Instantiate(goodsPrefab,transform.position, Quaternion.identity);
+            }
 
         }
     }

@@ -548,7 +548,7 @@ GameObject:
   - component: {fileID: 274597431}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -700,7 +700,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.3405105, z: 0.2}
+  m_Size: {x: 1, y: 1.3405105, z: 1.3775761}
   m_Center: {x: 0, y: -0.17025524, z: 0}
 --- !u!95 &274597431
 Animator:
@@ -2258,7 +2258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  maxHP: 10
+  maxHP: 3
   knockbackPower: 5
   dieMatetrial: {fileID: 2100000, guid: aecece0efac03734b8fe25a9e9f59f95, type: 2}
   hitMaterial: {fileID: 2100000, guid: babb44c9e1db51d4d811134dabfd4097, type: 2}
@@ -2267,6 +2267,9 @@ MonoBehaviour:
     type: 3}
   hitEffect: {fileID: 2830776939019850870, guid: a12df0a2fa1a4644e877c2a179093589,
     type: 3}
+  goodsPrefab: {fileID: 8278743369337178926, guid: 46676411215aed547beaf29dc3a826b7,
+    type: 3}
+  goodsCount: 5
 --- !u!212 &865043107
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2692,7 +2695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  maxHP: 10
+  maxHP: 3
   knockbackPower: 5
   dieMatetrial: {fileID: 2100000, guid: aecece0efac03734b8fe25a9e9f59f95, type: 2}
   hitMaterial: {fileID: 2100000, guid: babb44c9e1db51d4d811134dabfd4097, type: 2}
@@ -2701,6 +2704,9 @@ MonoBehaviour:
     type: 3}
   hitEffect: {fileID: 2830776939019850870, guid: a12df0a2fa1a4644e877c2a179093589,
     type: 3}
+  goodsPrefab: {fileID: 8278743369337178926, guid: 46676411215aed547beaf29dc3a826b7,
+    type: 3}
+  goodsCount: 5
 --- !u!65 &918633889
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2978,7 +2984,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  maxHP: 10
+  maxHP: 3
   knockbackPower: 5
   dieMatetrial: {fileID: 2100000, guid: aecece0efac03734b8fe25a9e9f59f95, type: 2}
   hitMaterial: {fileID: 2100000, guid: babb44c9e1db51d4d811134dabfd4097, type: 2}
@@ -2987,6 +2993,9 @@ MonoBehaviour:
     type: 3}
   hitEffect: {fileID: 2830776939019850870, guid: a12df0a2fa1a4644e877c2a179093589,
     type: 3}
+  goodsPrefab: {fileID: 8278743369337178926, guid: 46676411215aed547beaf29dc3a826b7,
+    type: 3}
+  goodsCount: 5
 --- !u!212 &975933765
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4747,7 +4756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  maxHP: 10
+  maxHP: 3
   knockbackPower: 5
   dieMatetrial: {fileID: 2100000, guid: aecece0efac03734b8fe25a9e9f59f95, type: 2}
   hitMaterial: {fileID: 2100000, guid: babb44c9e1db51d4d811134dabfd4097, type: 2}
@@ -4756,6 +4765,9 @@ MonoBehaviour:
     type: 3}
   hitEffect: {fileID: 2830776939019850870, guid: a12df0a2fa1a4644e877c2a179093589,
     type: 3}
+  goodsPrefab: {fileID: 8278743369337178926, guid: 46676411215aed547beaf29dc3a826b7,
+    type: 3}
+  goodsCount: 5
 --- !u!212 &1422092731
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5825,7 +5837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  maxHP: 10
+  maxHP: 3
   knockbackPower: 5
   dieMatetrial: {fileID: 2100000, guid: aecece0efac03734b8fe25a9e9f59f95, type: 2}
   hitMaterial: {fileID: 2100000, guid: babb44c9e1db51d4d811134dabfd4097, type: 2}
@@ -5834,6 +5846,9 @@ MonoBehaviour:
     type: 3}
   hitEffect: {fileID: 2830776939019850870, guid: a12df0a2fa1a4644e877c2a179093589,
     type: 3}
+  goodsPrefab: {fileID: 8278743369337178926, guid: 46676411215aed547beaf29dc3a826b7,
+    type: 3}
+  goodsCount: 5
 --- !u!212 &1763240407
 SpriteRenderer:
   m_ObjectHideFlags: 0
