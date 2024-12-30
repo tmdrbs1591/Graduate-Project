@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     [Header("스텟")]
     public float speed = 5f; // 플레이어 이동 속도
+    [SerializeField] Vector3 attackBoxSize; //공격 범위
+    [SerializeField] Transform attackBoxPos; // 공격 위치
 
     [Header("쿨타임")]
     public int comboStep = 0; // 현재 콤보 단계
@@ -76,7 +78,7 @@ public class Player : MonoBehaviour
         {
             comboStep = 0; // 타이머가 초기화된 경우 콤보 시작
         }
-
+        Damage(1);
         // 콤보 단계별로 쿨타임 설정 (딴 딴 딴딴 딴 패턴)
         switch (comboStep)
         {
@@ -190,5 +192,29 @@ public class Player : MonoBehaviour
             Flip(); // 오른쪽으로 회전
         else if (horizontalInput < 0 && facingRight)
             Flip(); // 왼쪽으로 회전
+    }
+
+    void Damage(float damage)
+    {
+        // 상호작용 박스 내의 충돌체 확인
+        Collider[] colliders = Physics.OverlapBox(attackBoxPos.position, attackBoxSize / 2f);
+
+        foreach (Collider collider in colliders)
+        {
+            if (collider != null && collider.CompareTag("Enemy"))
+            {
+                var enemyScript = collider.GetComponent<Enemy>();
+
+                if (enemyScript != null)
+                {
+                    enemyScript.TakeDamage(damage);
+                }
+            }
+        }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(attackBoxPos.position, attackBoxSize);
     }
 }
