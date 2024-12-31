@@ -843,7 +843,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3, y: 5}
+  m_AnchoredPosition: {x: 1, y: 5}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &306978870
@@ -3751,6 +3751,7 @@ MonoBehaviour:
   clips:
   - {fileID: 8300000, guid: 57fd0a46099e8ae4ab19a19179b6c4a6, type: 3}
   - {fileID: 8300000, guid: 2dbdf0c6309a09d41a2e61ef3eabfe2a, type: 3}
+  - {fileID: 8300000, guid: 8c5f697ef6bb6d5409ece8206d790b6a, type: 3}
   songs: []
   audioObject: {fileID: 708117791136189665, guid: 6d34be1cd4d5b9c4680d5fdfee818d53,
     type: 3}

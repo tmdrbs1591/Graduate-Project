@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Message
+public class DialogInfo
 {
     public string name;
     public int ID;
@@ -13,6 +13,6 @@ public class Message
 [CreateAssetMenu(fileName = ("DialogSO"), menuName = "Scriptable Object/DialogSO")]
 public class DialogSO : ScriptableObject
 {
-    public Message[] messages;
+    public DialogInfo[] dialogInfo;
 }
 

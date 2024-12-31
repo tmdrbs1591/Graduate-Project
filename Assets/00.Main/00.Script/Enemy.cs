@@ -74,10 +74,11 @@ public class Enemy : MonoBehaviour
 
     IEnumerator TimeSlow()
     {
-        Time.timeScale = 0.2f;
-        yield return new WaitForSecondsRealtime(0.3f);
+        Time.timeScale = 0.15f;
+        yield return new WaitForSecondsRealtime(0.33f);
         Time.timeScale = 1;
         Destroy(Instantiate(dieEffect, transform.position, Quaternion.identity), 3f);
+        AudioManager.instance.PlaySound(transform.position, 2, Random.Range(1f, 1.1f), 0.5f);
         Destroy(gameObject);
 
     }
