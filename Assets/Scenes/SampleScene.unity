@@ -187,6 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 53102253}
   - component: {fileID: 53102252}
+  - component: {fileID: 53102254}
   m_Layer: 0
   m_Name: CutScene CAM 1
   m_TagString: Untagged
@@ -249,6 +250,18 @@ Transform:
   - {fileID: 247178980}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &53102254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53102251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 651178862c11f544cb24ee0d9ccf757c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &100750005
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,6 +830,7 @@ GameObject:
   - component: {fileID: 247178983}
   - component: {fileID: 247178982}
   - component: {fileID: 247178981}
+  - component: {fileID: 247178984}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -900,6 +914,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &247178984
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247178979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 5
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &250150553
 GameObject:
   m_ObjectHideFlags: 0
@@ -910,6 +941,7 @@ GameObject:
   m_Component:
   - component: {fileID: 250150555}
   - component: {fileID: 250150554}
+  - component: {fileID: 250150556}
   m_Layer: 0
   m_Name: CutScene CAM 1 (1)
   m_TagString: Untagged
@@ -972,6 +1004,18 @@ Transform:
   - {fileID: 1871575443}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &250150556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250150553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 651178862c11f544cb24ee0d9ccf757c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &266324216
 GameObject:
   m_ObjectHideFlags: 0
@@ -8477,6 +8521,8 @@ GameObject:
   - component: {fileID: 1871575446}
   - component: {fileID: 1871575445}
   - component: {fileID: 1871575444}
+  - component: {fileID: 1871575447}
+  - component: {fileID: 1871575448}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -8560,6 +8606,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1871575447
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871575442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 5
+  mNoiseOffsets: {x: -779.15283, y: 695.33276, z: 59.20398}
+--- !u!114 &1871575448
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871575442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 0}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 1
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1876726903
 GameObject:
   m_ObjectHideFlags: 0
@@ -9023,8 +9103,20 @@ MonoBehaviour:
           m_MethodName: CutSceneDialogStartPosition
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgument: {fileID: 1351502648}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: CameraShake, Assembly-CSharp
+          m_MethodName: VNShakeCamera
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
