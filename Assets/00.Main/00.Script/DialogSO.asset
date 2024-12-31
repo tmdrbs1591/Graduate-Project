@@ -12,10 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d589835c5458d3428ca4c3188ec4ce0, type: 3}
   m_Name: DialogSO
   m_EditorClassIdentifier: 
-  messages:
-  - name: "\uB85C\uBD07 "
+  dialogInfo:
+  - name: "\uB85C\uBD07"
     ID: 1
     message:
-    - "\uC548\uB155 \uB09C \uB85C\uBD07\uC774\uC57C "
-    - "\u314E\u3147"
-    - "\u314E\u3147"
+    - "\uC548\uB155, \uBC18\uAC00\uC6CC!"
+    - "\uB0B4\uAC00 \uC9C0\uAE08\uBD80\uD130 \uC774\uACF3\uC744 \uC548\uB0B4\uD574\uC904\uAC8C."
+    - "\uC798 \uB530\uB77C\uC640!"
+  - name: "\uB450\uB824\uC6B4 \uB85C\uBD07"
+    ID: 2
+    message:
+    - "\uC800\uB9AC\uAC00!"
+    - "\uB9D0 \uAC78\uC9C0 \uB9D0\uC544\uC918."
+  - name: "\uACBD\uBE44 \uB85C\uBD07"
+    ID: 3
+    message:
+    - "\uC774 \uC55E\uC5D4 \uBB34\uC2DC\uBB34\uC2DC\uD55C \uBAAC\uC2A4\uD130\uB4E4\uC774
+      \uC788\uC5B4."
+    - "\uAC01\uC624 \uB2E8\uB2E8\uD788 \uD558\uB294\uAC8C \uC88B\uC744\uAC70\uC57C."

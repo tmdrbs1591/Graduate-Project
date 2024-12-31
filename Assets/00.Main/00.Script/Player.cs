@@ -44,12 +44,18 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+
+        if (DialogManager.instance.isDialogActive)
+            return;
         Move();
     }
 
     void Update()
     {
+        if (DialogManager.instance.isDialogActive)
+            return;
         HandleCombo();
+        Dialog();
     }
 
     void HandleCombo()
@@ -238,6 +244,26 @@ public class Player : MonoBehaviour
         }
     }
 
+    void Dialog()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Collider[] colliders = Physics.OverlapBox(attackBoxPos.position, attackBoxSize / 2f);
+
+            foreach (Collider collider in colliders)
+            {
+                if (collider != null && collider.CompareTag("NPC"))
+                {
+                    rb.velocity = Vector3.zero;
+                    animator.SetBool("isRun", false); // Run æ÷¥œ∏ﬁ¿Ãº« ∏ÿ√„
+
+                    var npcScript = collider.GetComponent<NPC>();
+                    if (npcScript != null) 
+                    DialogManager.instance.DialogStart(npcScript.NPCID, collider.transform.position);
+                }
+            } 
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Goods") ){
