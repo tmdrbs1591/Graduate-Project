@@ -47,7 +47,7 @@ public class DialogManager : MonoBehaviour
 
     private void Update()
     {
-        if (isDialogActive && Input.GetKey(KeyCode.C))
+        if (isDialogActive && Input.GetKeyDown(KeyCode.F))
         {
             if (!isTyping) // 타이핑 중이 아닐 때만 다음 메시지로 이동
             {

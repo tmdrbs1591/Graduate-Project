@@ -9,19 +9,28 @@ public class Player : MonoBehaviour
     [Header("스텟")]
     public float speed = 5f; // 플레이어 이동 속도
     public float attackPower = 5f; //공격력
+    [Header("공격")]
     [SerializeField] Vector3 attackBoxSize; //공격 범위
     [SerializeField] Transform attackBoxPos; // 공격 위치
-    [SerializeField] Vector3 skillBoxSize; //스킬 범위
-    [SerializeField] Transform skillBoxPos; // 스킬 위치
-    [Header("쿨타임")]
+
     public int comboStep = 0; // 현재 콤보 단계
     private float comboTimer = 0f; // 콤보 타이머
     public float comboDelay = 1f; // 콤보 입력 가능 시간 (초)
     public float slashActiveTime = 0.5f; // 슬래시 활성화 시간
+
     public float cooldownTime = 0.2f; // 쿨타임 (초)
     private float nextAttackTime = 0f; // 공격 사용 가능 시점
+
+    [Header("스킬")]
+    [SerializeField] Vector3 skillBoxSize; //스킬 범위
+    [SerializeField] Transform skillBoxPos; // 스킬 위치
+
     public float skillCooldownTime = 0.2f; // 쿨타임 (초)
     private float skillnextAttackTime = 0f; // 공격 사용 가능 시점
+
+    [Header("대쉬")]
+    public float dashCooldownTime = 0.2f; // 쿨타임 (초)
+    private float dashNextAttackTime = 0f; // 사용 가능 시점
 
     private Rigidbody rb;    // Rigidbody 컴포넌트 참조
     private Animator animator; // Animator 컴포넌트 참조
@@ -65,6 +74,7 @@ public class Player : MonoBehaviour
         HandleCombo();
         Dialog();
         Skill();
+        Dash();
     }
 
     void HandleCombo()
@@ -90,6 +100,56 @@ public class Player : MonoBehaviour
                 nextAttackTime = Time.time + cooldownTime;
             }
         }
+    }
+
+    void Dash()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            if (Time.time >= dashNextAttackTime)
+            {
+                // Rigidbody에 AddForce로 앞으로 이동
+                Vector3 forceDirection = facingRight ? Vector3.right : Vector3.left; // 바라보는 방향
+                rb.AddForce(forceDirection * 15f, ForceMode.Impulse); // 힘 크기와 모드 설정
+                                                                            // 공격 중 이동을 멈추기 위해 속도 0으로 설정
+                StartCoroutine(DashCor());
+                rb.velocity = Vector3.zero;
+                dashNextAttackTime = Time.time + dashCooldownTime;
+            }
+        }
+    }
+
+    IEnumerator DashCor()
+    {
+        isAttacking = true;
+        ghost.ghostDelay /= 5;
+        ghost.makeGhost = true;
+
+        yield return new WaitForSeconds(0.1f);
+
+        isAttacking = false;
+        ghost.ghostDelay *= 5;
+        ghost.makeGhost = false;
+    }
+
+    IEnumerator DashWithRigidbody(Vector3 direction, float force, float duration)
+    {
+        ghost.ghostDelay /= 5;
+        ghost.makeGhost = true;
+
+        float elapsedTime = 0f;
+        rb.velocity = Vector3.zero; // 대쉬 전에 기존 속도 제거
+
+        while (elapsedTime < duration)
+        {
+            rb.velocity = direction * force; // Rigidbody에 속도 부여
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        rb.velocity = Vector3.zero; // 대쉬 후 속도 초기화
+        ghost.makeGhost = false;
+        ghost.ghostDelay *= 5;
     }
 
     void Attack()
@@ -167,8 +227,14 @@ public class Player : MonoBehaviour
             }
         }
     }
+
     IEnumerator SkillCor()
     {
+
+        CameraShake.instance.ShakeCamera(5f, 0.1f);
+
+
+
         isSkill = true;
         ghost.makeGhost = true;
         DialogManager.instance.isDialogActive = true;
@@ -180,7 +246,9 @@ public class Player : MonoBehaviour
         spriteRen.enabled = false;
 
         yield return new WaitForSeconds(0.16f);
-
+        Time.timeScale = 0.3f;
+        yield return new WaitForSecondsRealtime(0.2f);
+        Time.timeScale = 1;
         ghost.makeGhost = false;
         for (int i = 0; i < 12; i++)
         {
@@ -296,7 +364,7 @@ public class Player : MonoBehaviour
 
     void Dialog()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             Collider[] colliders = Physics.OverlapBox(attackBoxPos.position, attackBoxSize / 2f);
 

@@ -77,7 +77,7 @@ public class Enemy : MonoBehaviour
         if (!GameManager.instance.player.isSkill)
         {
             Time.timeScale = 0.15f;
-            yield return new WaitForSecondsRealtime(0.33f);
+            yield return new WaitForSecondsRealtime(0.23f);
             Time.timeScale = 1;
         }
         Destroy(Instantiate(dieEffect, transform.position, Quaternion.identity), 3f);
