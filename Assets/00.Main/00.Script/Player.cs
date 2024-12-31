@@ -45,14 +45,14 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (DialogManager.instance.isDialogActive)
+        if (DialogManager.instance.isDialogActive || TimeLineManager.instance.isCutScene)
             return;
         Move();
     }
 
     void Update()
     {
-        if (DialogManager.instance.isDialogActive)
+        if (DialogManager.instance.isDialogActive || TimeLineManager.instance.isCutScene)
             return;
         HandleCombo();
         Dialog();
@@ -254,8 +254,7 @@ public class Player : MonoBehaviour
             {
                 if (collider != null && collider.CompareTag("NPC"))
                 {
-                    rb.velocity = Vector3.zero;
-                    animator.SetBool("isRun", false); // Run æ÷¥œ∏ﬁ¿Ãº« ∏ÿ√„
+                    StopChar();
 
                     var npcScript = collider.GetComponent<NPC>();
                     if (npcScript != null) 
@@ -269,6 +268,20 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Goods") ){
             Destroy(other.gameObject);
         }
+        if (other.CompareTag("CutSceneBox"))
+        {
+            StopChar();
+
+            other.gameObject.SetActive(false);
+            TimeLineManager.instance.StartCutScene(0);
+        }
+        
+    }
+
+    void StopChar()
+    {
+        rb.velocity = Vector3.zero;
+        animator.SetBool("isRun", false); // Run æ÷¥œ∏ﬁ¿Ãº« ∏ÿ√„
     }
 
     private void OnDrawGizmos()

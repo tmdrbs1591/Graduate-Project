@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class DialogManager : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class DialogManager : MonoBehaviour
     private bool isTyping; // 타이핑 중인지 확인
     private Coroutine typingCoroutine; // 글자 출력 코루틴
     private string currentName; // 현재 출력 중인 이름
+
+    [SerializeField] private PlayableDirector playableDirector; // 타임라인을 제어할 PlayableDirector
 
     private void Awake()
     {
@@ -134,8 +137,57 @@ public class DialogManager : MonoBehaviour
 
     void EndDialog()
     {
+        if(TimeLineManager.instance.isCutScene) 
+        ResumeTimeline();
+
         isDialogActive = false;
         speechBubble.SetActive(false); // 대화창 숨기기
         arrow.SetActive(false); // 대화 끝나면 화살표 숨기기
     }
+
+
+    public void CutSceneDialogStart(int id)
+    {
+        // 대화가 이미 활성화되어 있으면 새로운 대화가 시작되지 않도록 방지
+        if (isDialogActive) return;
+
+        PauseTimeline();
+
+        // 딕셔너리에서 ID로 대화 데이터를 빠르게 찾기
+        if (dialogDict.TryGetValue(id, out var dialog))
+        {
+            currentMessages = dialog.message;
+            currentName = dialog.name; // 이름 설정
+            currentMessageIndex = 0;
+            isDialogActive = true;
+            speechBubble.SetActive(true);
+            nameText.text = currentName; // 이름 텍스트 설정
+            AdjustNameBoxSize(); // 네임 박스 크기 조정
+
+            ShowNextMessage(); // 첫 메시지 출력
+        }
+    }
+    
+    public void CutSceneDialogStartPosition(Transform newPosition)
+    {
+            speechBubble.transform.position = new Vector3(newPosition.position.x, newPosition.position.y, newPosition.position.z);
+
+    }
+
+    public void PauseTimeline()
+    {
+        if (playableDirector != null)
+        {
+            playableDirector.Pause(); // 타임라인 멈추기
+        }
+    }
+
+    public void ResumeTimeline()
+    {
+        if (playableDirector != null)
+        {
+            playableDirector.Play(); // 타임라인 재생
+        }
+    }
+
 }
