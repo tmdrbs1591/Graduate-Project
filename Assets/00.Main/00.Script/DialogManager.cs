@@ -25,10 +25,14 @@ public class DialogManager : MonoBehaviour
     private string currentName; // 현재 출력 중인 이름
 
     [SerializeField] private PlayableDirector playableDirector; // 타임라인을 제어할 PlayableDirector
+    [SerializeField] private AudioClip tickSound; // 대사 출력 시 소리
+    [SerializeField] private AudioClip clickSound; // 대사 넘길 때 소리
+    private AudioSource audioSource; // AudioSource 컴포넌트
 
     private void Awake()
     {
         instance = this;
+        audioSource = GetComponent<AudioSource>(); // AudioSource 컴포넌트 초기화
     }
 
     private void Start()
@@ -47,6 +51,7 @@ public class DialogManager : MonoBehaviour
         {
             if (!isTyping) // 타이핑 중이 아닐 때만 다음 메시지로 이동
             {
+                PlayClickSound(); // 대사 넘길 때 소리 재생
                 ShowNextMessage();
             }
         }
@@ -106,6 +111,7 @@ public class DialogManager : MonoBehaviour
         {
             messageText.text += letter; // 한 글자씩 추가
             AdjustSpeechBubbleSize(); // 텍스트 크기에 맞게 말풍선 조정
+            PlayTickSound(); // 대사 출력 시 소리 재생
             yield return new WaitForSeconds(0.02f); // 글자 출력 간격
         }
 
@@ -114,6 +120,22 @@ public class DialogManager : MonoBehaviour
 
         // 메시지가 끝나면 화살표 표시
         arrow.SetActive(true);
+    }
+
+    void PlayTickSound()
+    {
+        if (audioSource != null && tickSound != null)
+        {
+            audioSource.PlayOneShot(tickSound); // 대사 출력 시 소리 재생
+        }
+    }
+
+    void PlayClickSound()
+    {
+        if (audioSource != null && clickSound != null)
+        {
+            audioSource.PlayOneShot(clickSound); // 대사 넘길 때 소리 재생
+        }
     }
 
     void AdjustSpeechBubbleSize()
@@ -137,14 +159,13 @@ public class DialogManager : MonoBehaviour
 
     void EndDialog()
     {
-        if(TimeLineManager.instance.isCutScene) 
-        ResumeTimeline();
+        if (TimeLineManager.instance.isCutScene)
+            ResumeTimeline();
 
         isDialogActive = false;
         speechBubble.SetActive(false); // 대화창 숨기기
         arrow.SetActive(false); // 대화 끝나면 화살표 숨기기
     }
-
 
     public void CutSceneDialogStart(int id)
     {
@@ -167,11 +188,10 @@ public class DialogManager : MonoBehaviour
             ShowNextMessage(); // 첫 메시지 출력
         }
     }
-    
+
     public void CutSceneDialogStartPosition(Transform newPosition)
     {
-            speechBubble.transform.position = new Vector3(newPosition.position.x, newPosition.position.y, newPosition.position.z);
-
+        speechBubble.transform.position = new Vector3(newPosition.position.x, newPosition.position.y, newPosition.position.z);
     }
 
     public void PauseTimeline()
@@ -189,5 +209,4 @@ public class DialogManager : MonoBehaviour
             playableDirector.Play(); // 타임라인 재생
         }
     }
-
 }

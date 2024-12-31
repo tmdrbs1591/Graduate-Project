@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -10,7 +11,8 @@ public class Player : MonoBehaviour
     public float attackPower = 5f; //공격력
     [SerializeField] Vector3 attackBoxSize; //공격 범위
     [SerializeField] Transform attackBoxPos; // 공격 위치
-
+    [SerializeField] Vector3 skillBoxSize; //스킬 범위
+    [SerializeField] Transform skillBoxPos; // 스킬 위치
     [Header("쿨타임")]
     public int comboStep = 0; // 현재 콤보 단계
     private float comboTimer = 0f; // 콤보 타이머
@@ -18,22 +20,28 @@ public class Player : MonoBehaviour
     public float slashActiveTime = 0.5f; // 슬래시 활성화 시간
     public float cooldownTime = 0.2f; // 쿨타임 (초)
     private float nextAttackTime = 0f; // 공격 사용 가능 시점
+    public float skillCooldownTime = 0.2f; // 쿨타임 (초)
+    private float skillnextAttackTime = 0f; // 공격 사용 가능 시점
 
     private Rigidbody rb;    // Rigidbody 컴포넌트 참조
     private Animator animator; // Animator 컴포넌트 참조
+    private SpriteRenderer spriteRen;
     private bool facingRight = true; // 현재 바라보는 방향 (오른쪽이 기본)
 
     [SerializeField] GameObject[] slashs; // 슬래시 공격 배열
     [SerializeField] GameObject damageText; // 슬래시 공격 배열
+    [SerializeField] GameObject skillEffect;
     public Ghost ghost;
 
     public bool isAttacking = false; // 공격 중인지 여부를 나타내는 변수
+    public bool isSkill = false; // 스킬사용 중인지 여부를 나타내는 변수
 
     void Start()
     {
         // Rigidbody 및 Animator 컴포넌트 가져오기
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        spriteRen = GetComponent<SpriteRenderer>();
 
         // 모든 슬래시 비활성화
         foreach (GameObject slash in slashs)
@@ -56,6 +64,7 @@ public class Player : MonoBehaviour
             return;
         HandleCombo();
         Dialog();
+        Skill();
     }
 
     void HandleCombo()
@@ -89,7 +98,8 @@ public class Player : MonoBehaviour
         {
             comboStep = 0; // 타이머가 초기화된 경우 콤보 시작
         }
-        Damage(attackPower);
+        Damage(attackPower,attackBoxPos,attackBoxSize);
+
         // 콤보 단계별로 쿨타임 설정 (딴 딴 딴딴 딴 패턴)
         switch (comboStep)
         {
@@ -145,6 +155,46 @@ public class Player : MonoBehaviour
         }
     }
 
+    void Skill()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            if (Time.time >= skillnextAttackTime)
+            {
+                StartCoroutine(SkillCor());
+
+                skillnextAttackTime = Time.time + skillCooldownTime;
+            }
+        }
+    }
+    IEnumerator SkillCor()
+    {
+        isSkill = true;
+        ghost.makeGhost = true;
+        DialogManager.instance.isDialogActive = true;
+        StopChar();
+
+
+        skillEffect.SetActive(false);
+        skillEffect.SetActive(true);
+        spriteRen.enabled = false;
+
+        yield return new WaitForSeconds(0.16f);
+
+        ghost.makeGhost = false;
+        for (int i = 0; i < 12; i++)
+        {
+            AudioManager.instance.PlaySound(transform.position, 0, Random.Range(1.2f, 1.3f), 1f);
+            Damage(attackPower - 2, skillBoxPos, skillBoxSize);
+            yield return new WaitForSeconds(0.05f);
+        }
+        spriteRen.enabled = true;
+
+        yield return new WaitForSeconds(0.5f);
+        DialogManager.instance.isDialogActive = false;
+        isSkill = false;
+
+    }
     IEnumerator GhostActive()
     {
         ghost.makeGhost = true;
@@ -204,10 +254,10 @@ public class Player : MonoBehaviour
             Flip(); // 왼쪽으로 회전
     }
 
-    void Damage(float damage)
+    void Damage(float damage , Transform boxPos , Vector3 boxSize )
     {
         // 상호작용 박스 내의 충돌체 확인
-        Collider[] colliders = Physics.OverlapBox(attackBoxPos.position, attackBoxSize / 2f);
+        Collider[] colliders = Physics.OverlapBox(boxPos.position, boxSize / 2f);
 
         foreach (Collider collider in colliders)
         {
@@ -227,7 +277,7 @@ public class Player : MonoBehaviour
                     var damageTextScript = Instantiate(damageText, randomPosition, Quaternion.identity).GetComponent<TMP_Text>();
 
 
-                    damageTextScript.text = attackPower.ToString();
+                    damageTextScript.text = damage.ToString();
 
                     Destroy(damageTextScript.gameObject,3f);
                     // 리지드바디를 찾아 넉백시키기
@@ -288,5 +338,8 @@ public class Player : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(attackBoxPos.position, attackBoxSize);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(skillBoxPos.position, skillBoxSize);
     }
 }
