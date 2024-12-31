@@ -108,6 +108,8 @@ public class Player : MonoBehaviour
         {
             if (Time.time >= dashNextAttackTime)
             {
+                animator.SetTrigger("isDash");
+
                 // Rigidbody에 AddForce로 앞으로 이동
                 Vector3 forceDirection = facingRight ? Vector3.right : Vector3.left; // 바라보는 방향
                 rb.AddForce(forceDirection * 15f, ForceMode.Impulse); // 힘 크기와 모드 설정
@@ -233,7 +235,7 @@ public class Player : MonoBehaviour
 
         CameraShake.instance.ShakeCamera(5f, 0.1f);
 
-
+        AudioManager.instance.PlaySound(transform.position, 3, Random.Range(1.2f, 1.3f), 1f);
 
         isSkill = true;
         ghost.makeGhost = true;

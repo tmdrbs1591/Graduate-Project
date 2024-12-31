@@ -12,6 +12,8 @@ public class TimeLineManager : MonoBehaviour
     public TimelineAsset[] timelineAsset;
 
     public bool isCutScene; // ÇöÀç ÄÆ¾À ÁßÀÎ°¡
+
+    public Animator cutSceneAnim;
     // Start is called before the first frame update
 
     private void Awake()
@@ -29,5 +31,10 @@ public class TimeLineManager : MonoBehaviour
     public void EndCutScene()
     {
         isCutScene = false;
+    }
+
+    public void EndAnimation()
+    {
+        cutSceneAnim.SetTrigger("CutEnd");
     }
 }
