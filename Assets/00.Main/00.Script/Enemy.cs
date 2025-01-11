@@ -65,9 +65,7 @@ public class Enemy : MonoBehaviour
             isDie = true;
             StartCoroutine(TimeSlow());
 
-            for (int i = 0; i < goodsCount; i++) { 
-            Instantiate(goodsPrefab,transform.position, Quaternion.identity);
-            }
+           
 
         }
     }
@@ -82,6 +80,10 @@ public class Enemy : MonoBehaviour
         }
         Destroy(Instantiate(dieEffect, transform.position, Quaternion.identity), 3f);
         AudioManager.instance.PlaySound(transform.position, 2, Random.Range(1f, 1.1f), 0.5f);
+        for (int i = 0; i < goodsCount; i++)
+        {
+            Instantiate(goodsPrefab, transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
 
     }

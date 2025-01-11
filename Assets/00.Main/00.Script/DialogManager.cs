@@ -29,6 +29,9 @@ public class DialogManager : MonoBehaviour
     [SerializeField] private AudioClip clickSound; // 대사 넘길 때 소리
     private AudioSource audioSource; // AudioSource 컴포넌트
 
+
+    [SerializeField] Transform playerCameraPos;
+
     private void Awake()
     {
         instance = this;
@@ -75,6 +78,9 @@ public class DialogManager : MonoBehaviour
 
             // speechBubble의 위치를 설정된 위치로 이동 (y 값은 5를 추가하여 올립니다)
             speechBubble.transform.position = new Vector3(newPosition.x, newPosition.y + 2, newPosition.z);
+
+            // 카메라 위치 변경
+            playerCameraPos.position += new Vector3(0, -1, 1);
 
             ShowNextMessage(); // 첫 메시지 출력
         }
@@ -160,11 +166,18 @@ public class DialogManager : MonoBehaviour
     void EndDialog()
     {
         if (TimeLineManager.instance.isCutScene)
+        {
             ResumeTimeline();
+        }
+        else
+        {
+            playerCameraPos.position += new Vector3(0, 1, -1);
 
+        }
         isDialogActive = false;
         speechBubble.SetActive(false); // 대화창 숨기기
         arrow.SetActive(false); // 대화 끝나면 화살표 숨기기
+
     }
 
     public void CutSceneDialogStart(int id)
