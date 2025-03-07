@@ -1069,7 +1069,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 868833fe274b29649b7fae2ffaf8ce68, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1828,7 +1828,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 868833fe274b29649b7fae2ffaf8ce68, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2164,6 +2164,8 @@ GameObject:
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
   - component: {fileID: 330585549}
+  - component: {fileID: 330585551}
+  - component: {fileID: 330585550}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2323,6 +2325,97 @@ Behaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   m_Enabled: 1
+--- !u!114 &330585550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e515b35d95400044fb4cc4f9f2888962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateScanMaterialProperties: 1
+  scanMaterial: {fileID: 2100000, guid: 7b88ba40488576b468436cda0e0c405d, type: 2}
+  scanOrigin: {fileID: 274597427}
+  alwaysPassScanOriginPosition: 1
+  alwaysPassScanOriginDirection: 0
+  scanDuration: 2
+  scansLeft: 0
+  timeLeft: 0
+  timePassed: 0
+  currentScanValueTesting: 0.308
+  scansNumberTesting: 3
+  _Size: 9.45
+  _SizeAdjust: 0.33
+  _OriginOffset: 2.9
+  _EdgeColor: {r: 0.73179066, g: 1.5221245, b: 7.4642644, a: 1}
+  _EdgeHardness: 0.8
+  _EdgePower: 10
+  _EdgeMultiplier: 1
+  _HighlightColor: {r: 0.454902, g: 0.4980392, b: 1, a: 1}
+  _HighlightPower: 3
+  _HighlightMultiplier: 0.796
+  _MaskRadius: 25
+  _MaskHardness: 0.8
+  _MaskPower: 1
+  _FovMaskEnabled: 0
+  _FovMask: 0.5
+  _FovMaskSmoothness: 0.2
+  _OverlayType: 4
+  _OverlayMultiplier: 1
+  _OverlayPower: 1
+  _OverlayColor: {r: 0, g: 0.7135079, b: 19.468573, a: 1}
+  _ScreenTexture: {fileID: 2800000, guid: bf3a55c281459924e8d85653e6a9a5d6, type: 3}
+  _ScreenTextureTiling: 33.69
+  _Frequency: 2.145
+  _Ratio: 0.521
+  _Thickness: 1.26
+  _NormalsOffset: 0.1
+  _NormalsHardness: 0.351
+  _NormalsPower: 2.14
+  _DepthThreshold: 1
+  _DepthHardness: 1
+  _DepthPower: 5
+  _EdgeDetectionMultiplier: 1
+  _GridMultiplier: 0.88
+  useCustomHighlight: 1
+  DistanceOffset: 0
+  MaskRadiusOffset: 0
+  FovOffset: 0
+  highlightObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  useScanOverlayOnMaterials: 1
+  highlightMaterials:
+  - {fileID: 2100000, guid: c90b8e5a600c96e4eac6320d131ca6ea, type: 2}
+  useWorldScanMaterials: 1
+  worldScanMaterials:
+  - {fileID: 2100000, guid: f515a427736c28b4fab516cf99217403, type: 2}
+  - {fileID: 2100000, guid: bf35916118d950c4285c0733870d16c2, type: 2}
+  - {fileID: 2100000, guid: 868833fe274b29649b7fae2ffaf8ce68, type: 2}
+--- !u!114 &330585551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f9d59be98f57a34e9ebbee1a9b0af47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scanFX: {fileID: 330585550}
+  scanVolume: {fileID: 1688166280}
 --- !u!1 &347508093
 GameObject:
   m_ObjectHideFlags: 0
@@ -4278,7 +4371,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0c72499e91ac19a42a0d220483708bd1, type: 2}
+  - {fileID: 2100000, guid: bf35916118d950c4285c0733870d16c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5084,7 +5177,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &742105476
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6326,7 +6419,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 868833fe274b29649b7fae2ffaf8ce68, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28156,7 +28249,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 868833fe274b29649b7fae2ffaf8ce68, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29655,7 +29748,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 868833fe274b29649b7fae2ffaf8ce68, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
