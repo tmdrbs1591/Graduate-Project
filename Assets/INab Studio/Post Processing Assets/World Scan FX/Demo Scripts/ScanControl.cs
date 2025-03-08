@@ -18,9 +18,9 @@ namespace INab.WorldScanFX
         void Update()
         {
             // Start a new scan when the N key is pressed
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetMouseButtonDown(1))
             {
-                scanVolume.SetActive(true);
+
                 // Ensure scanFX reference is not null
                 if (scanFX != null)
                 {
@@ -32,13 +32,15 @@ namespace INab.WorldScanFX
                     }
                     else
                     {
+                        scanVolume.SetActive(true);
+                        AudioManager.instance.PlaySound(transform.position, 4, Random.Range(1.4f, 1.4f), 1f);
                         // Pass scan origin properties and start a new scan
                         scanFX.PassScanOriginProperties();
                         scanFX.StartScan(1);
                     }
                 }
             }
-            else if (Input.GetKeyUp(KeyCode.E))
+            else if (Input.GetMouseButtonUp(1))
             {
                 scanVolume.SetActive(false);
             }

@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
 
     void Dash()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             if (Time.time >= dashNextAttackTime)
             {
@@ -219,7 +219,7 @@ public class Player : MonoBehaviour
 
     void Skill()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             if (Time.time >= skillnextAttackTime)
             {
