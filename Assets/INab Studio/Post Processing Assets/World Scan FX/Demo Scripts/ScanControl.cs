@@ -9,6 +9,7 @@ namespace INab.WorldScanFX
         public ScanFXBase scanFX;
 
         public GameObject scanVolume;
+        public GameObject scanSpere;
         private void OnEnable()
         {
             scanFX = GetComponent<ScanFXBase>();
@@ -33,6 +34,8 @@ namespace INab.WorldScanFX
                     else
                     {
                         scanVolume.SetActive(true);
+                        scanSpere.SetActive(true);
+
                         AudioManager.instance.PlaySound(transform.position, 4, Random.Range(1.4f, 1.4f), 1f);
                         // Pass scan origin properties and start a new scan
                         scanFX.PassScanOriginProperties();
@@ -43,6 +46,7 @@ namespace INab.WorldScanFX
             else if (Input.GetMouseButtonUp(1))
             {
                 scanVolume.SetActive(false);
+                scanSpere.SetActive(false);
             }
         }
     }

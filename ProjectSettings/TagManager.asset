@@ -8,6 +8,8 @@ TagManager:
   - Goods
   - NPC
   - CutSceneBox
+  - ScanSpere
+  - Weakness
   layers:
   - Default
   - TransparentFX
@@ -18,8 +20,8 @@ TagManager:
   - Enemy
   - Player
   - NPC
-  - 
-  - 
+  - CutBox
+  - ScanSpere
   - 
   - 
   - 

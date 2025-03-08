@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject hitEffect;
 
     [SerializeField] GameObject goodsPrefab;
+    [SerializeField] GameObject weakness;
     [SerializeField] int goodsCount;
 
     bool isDie;
@@ -28,6 +29,7 @@ public class Enemy : MonoBehaviour
     Animator anim;
     SpriteRenderer sprite;
 
+    private GameObject currentScanSphere; // 현재 감지된 ScanSpere를 저장할 변수
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -42,6 +44,16 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         Die();
+
+
+        if (currentScanSphere != null && !currentScanSphere.activeSelf)
+        {
+            if (weakness != null)
+            {
+                weakness.SetActive(false);
+                currentScanSphere = null;
+            } // 체크 종료
+        }
     }
 
     public void TakeDamage(float damage)
@@ -94,4 +106,15 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         sprite.material = originalMaterial;
     }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("ScanSpere"))
+        {
+            weakness.SetActive(true);
+            currentScanSphere = other.gameObject;  // 현재 감지된 ScanSpere 저장
+        }
+    }
+
 }
