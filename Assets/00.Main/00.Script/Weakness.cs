@@ -12,6 +12,7 @@ public class Weakness : MonoBehaviour
         {
             // 카메라 흔들기
             CameraShake.instance.ShakeCamera(6f, 0.1f);
+            AudioManager.instance.PlaySound(transform.position, 5, Random.Range(1f, 1.3f), 0.5f);
 
             // 이펙트 생성
             Instantiate(weaknessEffect, transform.position, Quaternion.identity);

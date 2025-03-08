@@ -64,7 +64,10 @@ public class Enemy : MonoBehaviour
 
         CameraShake.instance.ShakeCamera(5f,0.1f);
         currentHP -= damage;
+
+        if (anim != null)
         anim.SetTrigger("isHit");
+
         StartCoroutine(HitMaterial());
     }
 
