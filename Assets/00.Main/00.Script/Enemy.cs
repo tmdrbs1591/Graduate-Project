@@ -45,7 +45,6 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Die();
 
         if (currentScanSphere != null && !currentScanSphere.activeSelf)
         {
@@ -69,26 +68,20 @@ public class Enemy : MonoBehaviour
         StartCoroutine(HitMaterial());
     }
 
-    void Die()
+    public void Die()
     {
-        if(currentHP <= 0 && !isDie)
-        {
             CameraShake.instance.ShakeCamera(6f, 0.2f);
             sprite.material = dieMatetrial;
             isDie = true;
             StartCoroutine(TimeSlow());
-
-           
-
-        }
     }
 
     IEnumerator TimeSlow()
     {
         if (!GameManager.instance.player.isSkill)
         {
-            Time.timeScale = 0.8f;
-            yield return new WaitForSecondsRealtime(0.23f);
+            Time.timeScale = 0.9f;
+            yield return new WaitForSecondsRealtime(0.06f);
             Time.timeScale = 1;
         }
         Destroy(Instantiate(dieEffect, transform.position, Quaternion.identity), 3f);

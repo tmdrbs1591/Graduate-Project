@@ -97,7 +97,6 @@ public class Player : MonoBehaviour
             if (Time.time >= nextAttackTime)
             {
                 Attack();
-                AudioManager.instance.PlaySound(transform.position, 0, Random.Range(1.2f, 1.3f), 1f);
 
                 nextAttackTime = Time.time + cooldownTime;
             }
@@ -156,13 +155,14 @@ public class Player : MonoBehaviour
         ghost.ghostDelay *= 5;
     }
 
-    void Attack()
+    public void Attack()
     {
         if (comboTimer <= 0)
         {
             comboStep = 0; // Å¸ÀÌ¸Ó°¡ ÃÊ±âÈ­µÈ °æ¿ì ÄÞº¸ ½ÃÀÛ
         }
         Damage(attackPower,attackBoxPos,attackBoxSize);
+        AudioManager.instance.PlaySound(transform.position, 0, Random.Range(1.2f, 1.3f), 1f);
 
         // ÄÞº¸ ´Ü°èº°·Î ÄðÅ¸ÀÓ ¼³Á¤ (µý µý µýµý µý ÆÐÅÏ)
         switch (comboStep)
