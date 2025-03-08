@@ -66,6 +66,7 @@ public class Player : MonoBehaviour
         if (DialogManager.instance.isDialogActive || TimeLineManager.instance.isCutScene)
             return;
         Move();
+
     }
 
     void Update()
@@ -76,7 +77,6 @@ public class Player : MonoBehaviour
         Dialog();
         Skill();
         Dash();
-        WeaknessAttack();
     }
 
     void HandleCombo()
@@ -326,23 +326,7 @@ public class Player : MonoBehaviour
             Flip(); // 왼쪽으로 회전
     }
 
-    void WeaknessAttack()
-    {
-        if (Input.GetMouseButton(0)) // 마우스 왼쪽 버튼 클릭
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit)) // 레이캐스트 발사
-            {
-                if (hit.collider.CompareTag("Weakness")) // 클릭한 오브젝트가 "weakness" 태그를 가지고 있다면
-                {
-                    Instantiate(weaknessEffect, hit.collider.gameObject.transform.position, Quaternion.identity);
-                    Destroy(hit.collider.gameObject); // 오브젝트 제거
-                }
-            }
-        }
-    }
 
     void Damage(float damage , Transform boxPos , Vector3 boxSize )
     {

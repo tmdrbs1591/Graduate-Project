@@ -10,6 +10,7 @@ TagManager:
   - CutSceneBox
   - ScanSpere
   - Weakness
+  - ScanTrail
   layers:
   - Default
   - TransparentFX

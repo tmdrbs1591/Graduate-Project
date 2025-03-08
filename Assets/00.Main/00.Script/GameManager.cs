@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public Player player;
+    public bool isScan;
     // Start is called before the first frame update
     void Awake()
     {

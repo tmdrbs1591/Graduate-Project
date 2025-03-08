@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.U2D;
 
@@ -22,7 +23,10 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] GameObject goodsPrefab;
     [SerializeField] GameObject weakness;
+    [SerializeField] GameObject weaknessEffect;
     [SerializeField] int goodsCount;
+
+    bool isWeakness;
 
     bool isDie;
 
@@ -44,7 +48,11 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         Die();
+        if (isWeakness && !GameManager.instance.isScan)
+        {
 
+            currentHP = 0;
+        }
 
         if (currentScanSphere != null && !currentScanSphere.activeSelf)
         {
@@ -86,7 +94,7 @@ public class Enemy : MonoBehaviour
     {
         if (!GameManager.instance.player.isSkill)
         {
-            Time.timeScale = 0.15f;
+            Time.timeScale = 0.8f;
             yield return new WaitForSecondsRealtime(0.23f);
             Time.timeScale = 1;
         }
@@ -112,9 +120,22 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("ScanSpere"))
         {
-            weakness.SetActive(true);
-            currentScanSphere = other.gameObject;  // 현재 감지된 ScanSpere 저장
+            if (weakness != null)
+            {
+                weakness.SetActive(true);
+                currentScanSphere = other.gameObject;  // 현재 감지된 ScanSpere 저장
+            }
+        }
+
+        if (other.gameObject.CompareTag("ScanTrail"))
+        {
+            if (!isWeakness)
+            {
+                isWeakness = true;
+                CameraShake.instance.ShakeCamera(6f, 0.1f);
+                Instantiate(weaknessEffect, transform.position, Quaternion.identity);
+                Destroy(weakness.gameObject);
+            }
         }
     }
-
 }
