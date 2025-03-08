@@ -1,0 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Weakness : MonoBehaviour
+{
+    [SerializeField] GameObject weaknessEffect;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("ScanTrail"))
+        {
+            // 카메라 흔들기
+            CameraShake.instance.ShakeCamera(6f, 0.1f);
+
+            // 이펙트 생성
+            Instantiate(weaknessEffect, transform.position, Quaternion.identity);
+
+            // 부모의 위치를 GameManager의 enemyTransform 리스트에 추가
+            if (GameManager.instance != null && transform.parent != null)
+            {
+                GameManager.instance.enemyTransform.Add(transform.parent); // 부모의 위치 추가
+            }
+
+            // 오브젝트 삭제
+            Destroy(gameObject);
+        }
+    }
+}

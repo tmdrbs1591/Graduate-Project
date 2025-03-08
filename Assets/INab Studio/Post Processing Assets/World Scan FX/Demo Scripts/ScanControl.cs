@@ -75,7 +75,10 @@ namespace INab.WorldScanFX
 
                 Time.timeScale = 1f;
 
+
                 GameManager.instance.isScan = false;
+
+
 
             }
         }

@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public Player player;
     public bool isScan;
+
+    public List<Transform> enemyTransform;
     // Start is called before the first frame update
     void Awake()
     {

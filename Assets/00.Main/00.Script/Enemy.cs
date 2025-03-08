@@ -23,10 +23,8 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] GameObject goodsPrefab;
     [SerializeField] GameObject weakness;
-    [SerializeField] GameObject weaknessEffect;
     [SerializeField] int goodsCount;
 
-    bool isWeakness;
 
     bool isDie;
 
@@ -48,11 +46,6 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         Die();
-        if (isWeakness && !GameManager.instance.isScan)
-        {
-
-            currentHP = 0;
-        }
 
         if (currentScanSphere != null && !currentScanSphere.activeSelf)
         {
@@ -124,17 +117,6 @@ public class Enemy : MonoBehaviour
             {
                 weakness.SetActive(true);
                 currentScanSphere = other.gameObject;  // 현재 감지된 ScanSpere 저장
-            }
-        }
-
-        if (other.gameObject.CompareTag("ScanTrail"))
-        {
-            if (!isWeakness)
-            {
-                isWeakness = true;
-                CameraShake.instance.ShakeCamera(6f, 0.1f);
-                Instantiate(weaknessEffect, transform.position, Quaternion.identity);
-                Destroy(weakness.gameObject);
             }
         }
     }
