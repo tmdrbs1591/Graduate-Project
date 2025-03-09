@@ -1520,6 +1520,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaknessEffect: {fileID: 1380083432330736, guid: f6f431c4df7bd8a4c9e02bd43160dd18,
     type: 3}
+  spriteColor:
+  - {r: 0.8207547, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.23055436, b: 0.7176471, a: 1}
+  - {r: 0.39308167, g: 1, b: 0.92145306, a: 1}
+  - {r: 0.052235678, g: 0.8018868, b: 0, a: 1}
+  - {r: 0.9528302, g: 0.8756455, b: 0, a: 1}
+  maxHp: 1
+  curHP: 0
 --- !u!1 &274597425
 GameObject:
   m_ObjectHideFlags: 0
@@ -3068,7 +3076,7 @@ PrefabInstance:
     - target: {fileID: 779067700269986702, guid: 28cd6ed760bafcf458e97420076e7760,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.96
+      value: -13.960001
       objectReference: {fileID: 0}
     - target: {fileID: 779067700269986702, guid: 28cd6ed760bafcf458e97420076e7760,
         type: 3}
@@ -3325,6 +3333,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaknessEffect: {fileID: 1380083432330736, guid: f6f431c4df7bd8a4c9e02bd43160dd18,
     type: 3}
+  spriteColor:
+  - {r: 0.8207547, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.23055436, b: 0.7176471, a: 1}
+  - {r: 0.39308167, g: 1, b: 0.92145306, a: 1}
+  - {r: 0.052235678, g: 0.8018868, b: 0, a: 1}
+  - {r: 0.9528302, g: 0.8756455, b: 0, a: 1}
+  maxHp: 1
+  curHP: 0
 --- !u!65 &406960885
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3646,7 +3662,7 @@ PrefabInstance:
     - target: {fileID: 779067700269986702, guid: 28cd6ed760bafcf458e97420076e7760,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -39.94
+      value: -39.940002
       objectReference: {fileID: 0}
     - target: {fileID: 779067700269986702, guid: 28cd6ed760bafcf458e97420076e7760,
         type: 3}
@@ -5269,6 +5285,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaknessEffect: {fileID: 1380083432330736, guid: f6f431c4df7bd8a4c9e02bd43160dd18,
     type: 3}
+  spriteColor:
+  - {r: 0.8207547, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.23055436, b: 0.7176471, a: 1}
+  - {r: 0.39308167, g: 1, b: 0.92145306, a: 1}
+  - {r: 0.052235678, g: 0.8018868, b: 0, a: 1}
+  - {r: 0.9528302, g: 0.8756455, b: 0, a: 1}
+  maxHp: 1
+  curHP: 0
 --- !u!65 &792893274
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5925,7 +5949,7 @@ PrefabInstance:
     - target: {fileID: 779067700269986702, guid: 28cd6ed760bafcf458e97420076e7760,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -45.73
+      value: -45.730003
       objectReference: {fileID: 0}
     - target: {fileID: 779067700269986702, guid: 28cd6ed760bafcf458e97420076e7760,
         type: 3}
@@ -6637,6 +6661,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaknessEffect: {fileID: 1380083432330736, guid: f6f431c4df7bd8a4c9e02bd43160dd18,
     type: 3}
+  spriteColor:
+  - {r: 0.8207547, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.23055436, b: 0.7176471, a: 1}
+  - {r: 0.39308167, g: 1, b: 0.92145306, a: 1}
+  - {r: 0.052235678, g: 0.8018868, b: 0, a: 1}
+  - {r: 0.9528302, g: 0.8756455, b: 0, a: 1}
+  maxHp: 1
+  curHP: 0
 --- !u!65 &1000144095
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17925,6 +17957,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaknessEffect: {fileID: 1380083432330736, guid: f6f431c4df7bd8a4c9e02bd43160dd18,
     type: 3}
+  spriteColor:
+  - {r: 0.8207547, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.23055436, b: 0.7176471, a: 1}
+  - {r: 0.39308167, g: 1, b: 0.92145306, a: 1}
+  - {r: 0.052235678, g: 0.8018868, b: 0, a: 1}
+  - {r: 0.9528302, g: 0.8756455, b: 0, a: 1}
+  maxHp: 3
+  curHP: 0
 --- !u!65 &1188454472
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18173,6 +18213,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaknessEffect: {fileID: 1380083432330736, guid: f6f431c4df7bd8a4c9e02bd43160dd18,
     type: 3}
+  spriteColor:
+  - {r: 0.8207547, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.23055436, b: 0.7176471, a: 1}
+  - {r: 0.39308167, g: 1, b: 0.92145306, a: 1}
+  - {r: 0.052235678, g: 0.8018868, b: 0, a: 1}
+  - {r: 0.9528302, g: 0.8756455, b: 0, a: 1}
+  maxHp: 3
+  curHP: 0
 --- !u!65 &1216234294
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18312,6 +18360,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaknessEffect: {fileID: 1380083432330736, guid: f6f431c4df7bd8a4c9e02bd43160dd18,
     type: 3}
+  spriteColor:
+  - {r: 0.8207547, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.23055436, b: 0.7176471, a: 1}
+  - {r: 0.39308167, g: 1, b: 0.92145306, a: 1}
+  - {r: 0.052235678, g: 0.8018868, b: 0, a: 1}
+  - {r: 0.9528302, g: 0.8756455, b: 0, a: 1}
+  maxHp: 1
+  curHP: 0
 --- !u!65 &1229005655
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18451,6 +18507,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaknessEffect: {fileID: 1380083432330736, guid: f6f431c4df7bd8a4c9e02bd43160dd18,
     type: 3}
+  spriteColor:
+  - {r: 0.8207547, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.23055436, b: 0.7176471, a: 1}
+  - {r: 0.39308167, g: 1, b: 0.92145306, a: 1}
+  - {r: 0.052235678, g: 0.8018868, b: 0, a: 1}
+  - {r: 0.9528302, g: 0.8756455, b: 0, a: 1}
+  maxHp: 1
+  curHP: 0
 --- !u!65 &1243023135
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19203,6 +19267,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaknessEffect: {fileID: 1380083432330736, guid: f6f431c4df7bd8a4c9e02bd43160dd18,
     type: 3}
+  spriteColor:
+  - {r: 0.8207547, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.23055436, b: 0.7176471, a: 1}
+  - {r: 0.39308167, g: 1, b: 0.92145306, a: 1}
+  - {r: 0.052235678, g: 0.8018868, b: 0, a: 1}
+  - {r: 0.9528302, g: 0.8756455, b: 0, a: 1}
+  maxHp: 3
+  curHP: 0
 --- !u!65 &1363210490
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19498,13 +19570,13 @@ Transform:
   - {fileID: 346640047}
   - {fileID: 541929654}
   - {fileID: 887305671}
-  - {fileID: 365040134}
   - {fileID: 1830682316}
+  - {fileID: 2015294425}
+  - {fileID: 211132404}
+  - {fileID: 365040134}
   - {fileID: 471660108}
   - {fileID: 414767901}
   - {fileID: 305843021}
-  - {fileID: 2015294425}
-  - {fileID: 211132404}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1396329784
@@ -19587,6 +19659,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaknessEffect: {fileID: 1380083432330736, guid: f6f431c4df7bd8a4c9e02bd43160dd18,
     type: 3}
+  spriteColor:
+  - {r: 0.8207547, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.23055436, b: 0.7176471, a: 1}
+  - {r: 0.39308167, g: 1, b: 0.92145306, a: 1}
+  - {r: 0.052235678, g: 0.8018868, b: 0, a: 1}
+  - {r: 0.9528302, g: 0.8756455, b: 0, a: 1}
+  maxHp: 3
+  curHP: 0
 --- !u!65 &1419219549
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25275,6 +25355,7 @@ MonoBehaviour:
   isScan: 0
   enemyTransform: []
   playerAttackTrail: {fileID: 889279089}
+  isMoving: 0
 --- !u!4 &1691387954
 Transform:
   m_ObjectHideFlags: 0
@@ -25339,6 +25420,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaknessEffect: {fileID: 1380083432330736, guid: f6f431c4df7bd8a4c9e02bd43160dd18,
     type: 3}
+  spriteColor:
+  - {r: 0.8207547, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.23055436, b: 0.7176471, a: 1}
+  - {r: 0.39308167, g: 1, b: 0.92145306, a: 1}
+  - {r: 0.052235678, g: 0.8018868, b: 0, a: 1}
+  - {r: 0.9528302, g: 0.8756455, b: 0, a: 1}
+  maxHp: 1
+  curHP: 0
 --- !u!65 &1704858370
 BoxCollider:
   m_ObjectHideFlags: 0

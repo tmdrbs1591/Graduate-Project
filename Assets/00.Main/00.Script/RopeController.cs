@@ -56,6 +56,10 @@ public class RopeController : MonoBehaviour
     {
         if (GameManager.instance.isMoving)
             return;
+
+        playerScript.ghost.ghostDelay /= 3;
+        playerScript.ghost.makeGhost = true;
+
         CameraShake.instance.ShakeCamera(15f, 0.2f);
         playerTransform = player;
         playerTransform.position = startPoint.position; // 로프 시작점으로 이동
@@ -82,6 +86,10 @@ public class RopeController : MonoBehaviour
     {
         isGrinding = false;
         playerScript.rb.isKinematic = false;
+
+
+        playerScript.ghost.ghostDelay *= 3;
+        playerScript.ghost.makeGhost = false;
     }
 
     // 로프 시작 시 시각적 효과
