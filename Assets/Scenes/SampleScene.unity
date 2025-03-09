@@ -1603,8 +1603,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   attackPower: 3
+  jumpPower: 12
   attackBoxSize: {x: 3.36, y: 2.18, z: 1.53}
   attackBoxPos: {fileID: 1396329785}
+  groundCheckDistance: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 2048
   comboStep: 0
   comboDelay: 1
   slashActiveTime: 1
@@ -1975,7 +1980,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &329117808
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3943,8 +3948,8 @@ GameObject:
   - component: {fileID: 534870657}
   - component: {fileID: 534870656}
   - component: {fileID: 534870655}
-  m_Layer: 0
-  m_Name: Cube (1)
+  m_Layer: 11
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -54,6 +54,11 @@ public class Enemy : MonoBehaviour
                 currentScanSphere = null;
             } // 체크 종료
         }
+
+        if (currentHP <= 0)
+        {
+            Die();
+        }
     }
 
     public void TakeDamage(float damage)

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -9,9 +10,13 @@ public class Player : MonoBehaviour
     [Header("스텟")]
     public float speed = 5f; // 플레이어 이동 속도
     public float attackPower = 5f; //공격력
+    public float jumpPower;
     [Header("공격")]
     [SerializeField] Vector3 attackBoxSize; //공격 범위
     [SerializeField] Transform attackBoxPos; // 공격 위치
+
+    public float groundCheckDistance = 0.2f; // 땅과의 거리 확인 (레이캐스트를 사용)
+    public LayerMask groundLayer; // 바닥 레이어
 
     public int comboStep = 0; // 현재 콤보 단계
     private float comboTimer = 0f; // 콤보 타이머
@@ -45,7 +50,8 @@ public class Player : MonoBehaviour
 
     public bool isAttacking = false; // 공격 중인지 여부를 나타내는 변수
     public bool isSkill = false; // 스킬사용 중인지 여부를 나타내는 변수
-
+    private bool isGrounded; // 현재 땅에 닿아있는지
+    private bool canDoubleJump;
     void Start()
     {
         // Rigidbody 및 Animator 컴포넌트 가져오기
@@ -77,6 +83,21 @@ public class Player : MonoBehaviour
         Dialog();
         Skill();
         Dash();
+
+        // 바닥에 닿아있는지 확인
+        isGrounded = IsGrounded();
+
+        // 바닥에 닿아 있으면 더블 점프를 사용할 수 있도록 설정
+        if (isGrounded)
+        {
+            canDoubleJump = true;
+        }
+
+        // 점프 처리
+        if ((isGrounded || canDoubleJump) && Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+        }
     }
 
     void HandleCombo()
@@ -92,7 +113,7 @@ public class Player : MonoBehaviour
         }
 
         // 공격 입력 처리
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetMouseButtonDown(0) && !GameManager.instance.isScan)
         {
             if (Time.time >= nextAttackTime)
             {
@@ -155,6 +176,32 @@ public class Player : MonoBehaviour
         ghost.ghostDelay *= 5;
     }
 
+    // 점프 구현
+    public void Jump()
+    {
+        if (isGrounded)
+        {
+            // 첫 번째 점프
+            rb.velocity = new Vector3(rb.velocity.x, jumpPower, rb.velocity.z);
+        }
+        else if (canDoubleJump)
+        {
+            // 두 번째 점프 (더블 점프)
+            rb.velocity = new Vector3(rb.velocity.x, jumpPower, rb.velocity.z);
+            canDoubleJump = false; // 더블 점프 후에는 다시 사용할 수 없도록 설정
+        }
+    }
+
+    // 바닥에 닿아 있는지 확인하는 함수 (레이캐스트로 확인)
+    private bool IsGrounded()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, groundCheckDistance, groundLayer))
+        {
+            return true; // 바닥에 닿아 있음
+        }
+        return false; // 바닥에 닿아 있지 않음
+    }
     public void Attack()
     {
         if (comboTimer <= 0)
