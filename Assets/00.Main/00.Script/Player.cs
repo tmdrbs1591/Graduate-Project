@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     public float dashCooldownTime = 0.2f; // 쿨타임 (초)
     private float dashNextAttackTime = 0f; // 사용 가능 시점
 
-    private Rigidbody rb;    // Rigidbody 컴포넌트 참조
+    public Rigidbody rb;    // Rigidbody 컴포넌트 참조
     private Animator animator; // Animator 컴포넌트 참조
     private SpriteRenderer spriteRen;
     private bool facingRight = true; // 현재 바라보는 방향 (오른쪽이 기본)

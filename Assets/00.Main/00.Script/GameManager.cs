@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private bool isMoving = false;
+    public bool isMoving = false;
 
     // 코루틴을 사용하여 플레이어를 순서대로 이동시키는 메서드
     IEnumerator MovePlayerToEnemies()
