@@ -47,7 +47,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CurrentScanValue: 0.308
+    - _CurrentScanValue: 1.07
     - _DepthHardness: 1
     - _DepthPower: 5
     - _DepthThreshold: 1
@@ -79,7 +79,7 @@ Material:
     - _SizeAdjust: 0.33
     - _Thickness: 1.26
     m_Colors:
-    - _EdgeColor: {r: 0.73179066, g: 1.5221245, b: 7.4642644, a: 1}
+    - _EdgeColor: {r: 0.02962483, g: 0.27243292, b: 2.0934918, a: 1}
     - _Forward: {r: 0, g: 0, b: 1, a: 0}
     - _HighlightColor: {r: 0.454902, g: 0.4980392, b: 1, a: 1}
     - _Origin: {r: -2.1, g: -1.1, b: -8.27, a: 0}
